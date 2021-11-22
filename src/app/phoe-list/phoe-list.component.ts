@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PhoeListComponent implements OnInit {
 @Input() userNumber:any;
+@Input() addUser:any;
   constructor() { }
 
   ngOnInit(): void {

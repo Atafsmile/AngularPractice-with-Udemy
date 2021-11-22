@@ -2,7 +2,77 @@
     <div class="row">
         <div class="col-md-12">
             <app-users></app-users>
+            <app-cockpit (serverCreated)='onServerAdd($event)' (bluePrintAdded)='onBluePrintAdded($event)'>
+            </app-cockpit>
+            <app-server-element *ngFor='let serveElement of ServerElements ' [servElement]='serveElement'>
+            </app-server-element>
+        </div>
+        <button class="btn btn-danger" (click)='odestroyb()'>delete </button>
+
+    </div>
+
+</div>
+<div class="container">
+    <div class="row">
+        <app-game-control (intervalFierd)='onIntervalFierd($event)'></app-game-control>
+
+    </div>
+    <div class="row">
+        <app-odd *ngFor='let oddNumber of oddnumbers' [number]='oddNumber'></app-odd>
+    </div>
+    <div class="row">
+        <app-even *ngFor='let evenNumber of  evenNumber' [number]='evenNumber'></app-even>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary" (click)='onlyAdded=!onlyAdded'>
+                only Show added Number
+            </button>
+            <br><br>
+            <div *ngIf='onlyAdded' appBatterHighLight [defaltWidth]='"1000px"' [highWidth]='"300px"'>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor='let odd of oddNumberss' [ngClass]='{odd:odd%2!==0}' [ngStyle]="{backgroundColor:odd % 2!==0 ? 'yellow': 'red'}">
+                        {{odd}}
+                    </li>
+
+                </ul>
+            </div>
+            <div *appUnless='onlyAdded'>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor='let even of evenNumberss' [ngClass]='{even:even%2!==0}' [ngStyle]="{ backgroundColor:even % 2!==0 ? 'yellow': 'red'}">
+                        {{even}}
+                    </li>
+                </ul>
+                <p appHighLight >Style with basic directive </p>
+                <p appBatterHighLight >Style with basic directive </p>
+
+            </div>
+            <div [ngSwitch]='value'>
+                <p *ngSwitchCase='5'>value is 5</p>
+                <p  *ngSwitchCase='10' >value is 10</p>
+                <p  *ngSwitchCase='15'>value is 15</p>
+                <p *ngSwitchDefault>vale is default</p>
+
+            </div>
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <app-new-account  ></app-new-account>
+        <hr/>
+        <app-account
+          *ngFor="let acc of accounts; let i = index"
+          [account]="acc"
+          [id]="i"
+        ></app-account>
+      </div>
+    </div>
+  </div>
+
 <router-outlet></router-outlet>

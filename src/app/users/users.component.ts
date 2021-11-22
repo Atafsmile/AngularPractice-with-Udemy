@@ -13,6 +13,7 @@ userEmail:any="";
 userList:any=[];
 userNumber:any='';
 userNuberList:any=[];
+addUserList:any=[];
   //constructor(private service:EmailService) { }
 constructor(private service:EmailPhoneService,private service2:PhonesService){}
   ngOnInit(): void {
@@ -25,8 +26,6 @@ onUserAdd():any{
       alert('this emails is :'+data.email+'valid')
       if(data.is_valid_format.value==true){
         this.userList.push("email "+data.email+'  is valid ');
-        const jsondta=JSON.stringify(this.userList);
-        localStorage.setItem('myData',jsondta);
       
          console.log(this.userList);
       }
@@ -38,9 +37,7 @@ onUserAdd():any{
       localStorage.setItem('myData',jsondta);
       if(data.is_valid_format.value==false){
         this.userList.push("email "+data.email+' is Invalid');
-        const jsondta=JSON.stringify(this.userList);
-        localStorage.setItem('myData',jsondta);
-     
+      
          console.log(this.userList);
       }
     }  
@@ -72,7 +69,10 @@ onUserAdd():any{
    })
 
  }
+ onUserPhoneAdds(event:any){
+   this.addUserList.push(event);
+   
+ }
   }
-  
-    
+      
 
